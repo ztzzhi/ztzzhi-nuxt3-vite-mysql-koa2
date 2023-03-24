@@ -12,7 +12,6 @@
         </NuxtLink>
         <div class="header-menu">
           <n-menu
-            v-model:value="activeKey"
             mode="horizontal"
             :options="menuData"
           />

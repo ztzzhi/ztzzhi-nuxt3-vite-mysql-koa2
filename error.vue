@@ -1,15 +1,13 @@
 <template>
   <div>
-    {{error}}
+    {{ error.statusCode == 404 ? 404 : 500 }}
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["error"],
+};
 </script>
 
-<style lang="less">
-.hh{
-  
-}
-</style>
+<style lang="less"></style>
