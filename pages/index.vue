@@ -56,6 +56,7 @@ export default {
       background-position: center center;
       background-size: cover;
       transition: all 0.5s;
+      z-index: 10;
     }
     .top_box::before {
       position: absolute;
