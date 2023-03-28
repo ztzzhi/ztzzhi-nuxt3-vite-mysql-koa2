@@ -1,22 +1,10 @@
 <template>
   <div>
-    <div class="ztz-header">
+    <div :class="['ztz-header', isShowTopBar ? '' : 'disvisible']">
       <div class="container">
-        <NuxtLink to="/" class="logo">
-          <img
-            src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/e08da34488b114bd4c665ba2fa520a31.svg"
-            alt="稀土掘金"
-            class="logo-img"
-            data-v-d16a6810=""
-          />
-        </NuxtLink>
-        <div class="header-menu">
-          <n-menu
-            mode="horizontal"
-            :options="menuData"
-          />
+        <div class="menu_box">
+          <n-menu mode="horizontal" :options="menuData" />
         </div>
-
         <div class="header-box-search">
           <div class="header-search">
             <n-input-group>
@@ -24,55 +12,21 @@
                 :class="['hs-search', widthTrs ? 'search-width-trans' : '']"
                 @focus="searchFocus"
                 @blur="searchBlur"
+                placeholder="输入你想搜索的文章"
               />
-              <n-button type="primary" ghost> 搜索 </n-button>
             </n-input-group>
           </div>
           <div :class="['header_drop_menu']">
-            <n-dropdown :options="dropDownOptions" placement="bottom-end">
-              <n-button type="primary">创作者中心</n-button>
-            </n-dropdown>
+            <n-button type="primary">创作者中心</n-button>
+            <!-- <n-dropdown :options="dropDownOptions" placement="bottom-end">
+              
+            </n-dropdown> -->
           </div>
         </div>
-
-        <div class="header-box-right">
-          <div class="header_vip">
-            <img
-              src="https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/24127194d5b158d7eaf8f09a256c5d01.svg"
-              alt=""
-            />
-            会员
-          </div>
-
-          <div class="header_notice">
-            <n-icon size="30">
-              <svg
-                version="1.1"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                x="0px"
-                y="0px"
-                viewBox="0 0 512 512"
-                enable-background="new 0 0 512 512"
-                xml:space="preserve"
-              >
-                <path
-                  d="M256,464c22.779,0,41.411-18.719,41.411-41.6h-82.823C214.588,445.281,233.221,464,256,464z M390.589,339.2V224.8
-	c0-63.44-44.516-117.518-103.53-131.041V79.2c0-17.682-13.457-31.2-31.059-31.2s-31.059,13.518-31.059,31.2v14.559
-	c-59.015,13.523-103.53,67.601-103.53,131.041v114.4L80,380.8v20.8h352v-20.8L390.589,339.2z"
-                ></path>
-              </svg>
-            </n-icon>
-          </div>
-
-          <div class="header_avatar">
-            <n-avatar
-              round
-              size="medium"
-              src="https://p3-passport.byteimg.com/img/mosaic-legacy/3792/5112637127~100x100.awebp"
-            />
-          </div>
-        </div>
+        <NuxtLink to="/" class="logo">
+          <img src="../static/img/header.jpg" alt="博客logo" class="logo-img" />
+          <span class="logo-text">小张很嚣张</span>
+        </NuxtLink>
       </div>
     </div>
     <slot />
@@ -105,53 +59,38 @@ export default {
     NAvatar,
   },
   setup() {
+    const isShowTopBar = ref(true);
+    onMounted(() => {
+      if (process.client) {
+        window.onscroll = () => {
+          let top = Math.floor(
+            document.documentElement.scrollTop || document.body.scrollTop
+          );
+          if (top > 40) {
+            isShowTopBar.value = false;
+          } else {
+            isShowTopBar.value = true;
+          }
+        };
+      }
+    });
+
     const menuData: MenuOption[] = [
       {
-        label: () => <nuxt-link to="/detail">首页</nuxt-link>,
+        label: () => <nuxt-link to="/mine">首页</nuxt-link>,
         key: "hear-the-wind-sing",
       },
       {
-        label: () => <nuxt-link to="/pins">沸点</nuxt-link>,
+        label: () => <nuxt-link to="/center">我的</nuxt-link>,
         key: "pinball-1973",
       },
       {
-        label: () => <nuxt-link to="/course">课程</nuxt-link>,
+        label: () => <nuxt-link to="/link">友链</nuxt-link>,
         key: "pinball-1972",
       },
       {
-        label: () => <nuxt-link to="/live">直播</nuxt-link>,
+        label: () => <nuxt-link to="/about">关于我</nuxt-link>,
         key: "pinball-1971",
-      },
-      {
-        label: () => <nuxt-link to="/live">活动</nuxt-link>,
-        key: "pinball-1970",
-      },
-      {
-        label: () => <nuxt-link to="/challenge">活动</nuxt-link>,
-        key: "pinball-1969",
-      },
-      {
-        label: () => <nuxt-link to="/shop">商城</nuxt-link>,
-        key: "pinball-1968",
-      },
-      {
-        label: () => <nuxt-link to="/app">APP</nuxt-link>,
-        key: "pinball-1967",
-      },
-      {
-        label: () => <nuxt-link to="/chajian">插件</nuxt-link>,
-        key: "pinball-1966",
-      },
-      {
-        label: () => (
-          <nuxt-link to="/buy">
-            <img
-              class="buyimage"
-              src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7482b3ad2cd14edda31f05399c2ae759~tplv-k3u1fbpfcp-no-mark:230:230:230:0.awebp"
-            />
-          </nuxt-link>
-        ),
-        key: "pinball-1965",
       },
     ];
 
@@ -188,6 +127,7 @@ export default {
       app.widthTrs = false;
     };
     return {
+      isShowTopBar,
       menuData,
       searchFocus,
       searchBlur,
@@ -198,7 +138,7 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .ztz-header {
   position: fixed;
   top: 0;
@@ -207,43 +147,56 @@ export default {
   bottom: 0;
   transition: all 0.2s;
   height: 0.6rem;
+  z-index: 250;
+  transform: translateY(0);
 
   .container {
+    width: 100%;
     max-width: 14.4rem;
     margin: auto;
     display: flex;
     align-items: center;
-    background: #fff;
-    border-bottom: 1px solid #f1f1f1;
+    background: transparent;
     color: #909090;
     z-index: 250;
     height: 0.6rem;
+    padding: 0 0.5rem;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 
     .logo {
       margin-right: 0.24rem;
       margin-left: 0.24rem;
       display: inline-block;
-      height: 0.22rem;
-      width: auto;
-      img {
-        width: 100%;
-        height: 100%;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      .logo-img {
+        width: 0.36rem;
+        height: 0.36rem;
+        margin-right: 0.06rem;
+        flex-shrink: 0;
+        border-radius: 50%;
+      }
+      .logo-text {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+        font-weight: bold;
       }
     }
-    .header-menu {
-      width: 6.5rem;
-      .n-menu.n-menu--horizontal .n-menu-item-content {
-        padding: 0 0.115rem;
-      }
-      .buyimage {
-        height: 0.4rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+    .menu_box {
+      width: 7rem;
+      color: #fff;
+      ::v-deep(
+          .n-menu.n-menu--horizontal
+            .n-menu-item-content
+            .n-menu-item-content-header
+            a
+        ) {
+        color: #fff;
       }
     }
     .header-box-search {
-      width: 4.1rem;
+      width: 4rem;
+      width: rem;
       display: flex;
       align-items: center;
       overflow: hidden;
@@ -267,33 +220,9 @@ export default {
       //   overflow: hidden !important;
       // }
     }
-    .header-box-right {
-      margin: 0 0.2rem;
-      display: flex;
-      align-items: center;
-      .header_vip {
-        width: 0.6rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        height: 100%;
-        font-size: 0.14rem;
-        color: #86909c;
-      }
-      .header_notice {
-        width: 0.6rem;
-        height: 0.4rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .header_avatar {
-        height: 100%;
-        display: flex;
-        align-items: center;
-        margin: 0.1rem;
-      }
-    }
   }
+}
+.disvisible {
+  transform: translate(0, -100%);
 }
 </style>

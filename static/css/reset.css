@@ -1,121 +1,106 @@
-html,
-body,
-p,
-ol,
-ul,
-li,
-dl,
-dt,
-dd,
-blockquote,
-figure,
-fieldset,
-legend,
-textarea,
-pre,
-iframe,
-hr,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-  padding: 0;
+/**
+ * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * http://cssreset.com
+ */
+ 
+ html, body, div, span, applet, object, iframe,
+ h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+ a, abbr, acronym, address, big, cite, code,
+ del, dfn, em, img, ins, kbd, q, s, samp,
+ small, strike, strong, sub, sup, tt, var,
+ b, u, i, center,
+ dl, dt, dd, ol, ul, li,
+ fieldset, form, label, legend,
+ table, caption, tbody, tfoot, thead, tr, th, td,
+ article, aside, canvas, details, embed, 
+ figure, figcaption, footer, header, hgroup, 
+ menu, nav, output, ruby, section, summary,
+ time, mark, audio, video{
+   margin: 0;
+   padding: 0;
+   border: 0;
+   font-size: 100%;
+   font: inherit;
+   font-weight: normal;
+   vertical-align: baseline;
+ }
+ *{
   box-sizing: border-box;
-}
-
-/* h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-size: 100%;
-  font-weight: normal;
-} */
-
-ul {
-  list-style: none;
-}
-
-button,
-input,
-select {
-  margin: 0;
-}
-
-html {
-  box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-img,
-video {
-  height: auto;
-  max-width: 100%;
-}
-
-iframe {
-  border: 0;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-td,
-th {
-  padding: 0;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-/*全局滚动条样式*/
-::-webkit-scrollbar {
-  width: 4px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 5px;
-  background-color: #929EAD;
-}
-
-.action {
-  display: flex;
-  align-items: center;
-  height: 48px;
-  padding: 0 12px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.ant-layout-sider-children .ant-menu-root .ant-menu-item:nth-child(1) {
-  margin-top: 0;
-}
-
-.ProTableClass .ant-pro-card-body {
-  padding: 0;
-}
-
-.ProTableClass .ant-pro-table-list-toolbar-container {
-  padding-top: 0px;
-}
-
-.ant-dropdown-menu {
-  padding: 0 !important;
-}
-
-.ant-dropdown-menu-submenu-title {
-  padding: 6px 12px;
-}
+ }
+ /* HTML5 display-role reset for older browsers */
+ article, aside, details, figcaption, figure, 
+ footer, header, hgroup, menu, nav, section{
+   display: block;
+ }
+ ol, ul, li{
+   list-style: none;
+ }
+ blockquote, q{
+   quotes: none;
+ }
+ blockquote:before, blockquote:after,
+ q:before, q:after{
+   content: '';
+   content: none;
+ }
+ table{
+   border-collapse: collapse;
+   border-spacing: 0;
+ }
+  
+ /* custom */
+ a{
+   color: #7e8c8d;
+   text-decoration: none;
+   -webkit-backface-visibility: hidden;
+ }
+ ::-webkit-scrollbar{
+   width: 5px;
+   height: 5px;
+ }
+ ::-webkit-scrollbar-track-piece{
+   background-color: rgba(0, 0, 0, 0.2);
+   -webkit-border-radius: 6px;
+ }
+ ::-webkit-scrollbar-thumb:vertical{
+   height: 5px;
+   background-color: rgba(125, 125, 125, 0.7);
+   -webkit-border-radius: 6px;
+ }
+ ::-webkit-scrollbar-thumb:horizontal{
+   width: 5px;
+   background-color: rgba(125, 125, 125, 0.7);
+   -webkit-border-radius: 6px;
+ }
+ html, body{
+   width: 100%;
+   font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", "微软雅黑", sans-serif;
+ }
+ body{
+   line-height: 1;
+   -webkit-text-size-adjust: none;
+   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+ }
+ html{
+   overflow-y: scroll;
+ }
+  
+ /*清除浮动*/
+ .clearfix:before,
+ .clearfix:after{
+   content: " ";
+   display: inline-block;
+   height: 0;
+   clear: both;
+   visibility: hidden;
+ }
+ .clearfix{
+   *zoom: 1;
+ }
+  
+ /*隐藏*/
+ .dn{
+   display: none;
+ }
+ 
+ 

@@ -1522,6 +1522,11 @@
   dependencies:
     "is-what" "^3.14.1"
 
+"core-js@^3.6.5":
+  "integrity" "sha512-+jwgnhg6cQxKYIIjGtAHq2nwUOolo9eoFZ4sHfUH09BLXBgxnH4gA0zEd+t+BO2cNB8idaBtZFcFTRjQJRJmAw=="
+  "resolved" "https://registry.npmjs.org/core-js/-/core-js-3.29.1.tgz"
+  "version" "3.29.1"
+
 "core-util-is@~1.0.0":
   "integrity" "sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ=="
   "resolved" "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.3.tgz"
@@ -4348,6 +4353,11 @@
   "resolved" "https://registry.npmjs.org/type-fest/-/type-fest-3.6.1.tgz"
   "version" "3.6.1"
 
+"typed.js@^2.0.12":
+  "integrity" "sha512-tAgtrZDaz8CZ9dTuon9uglFLlNDVz94IF5yYOVtuTTjIjkZI5gg5BJi6JxE9uAmmoc7wY7w6XI59sjgsR8yA9g=="
+  "resolved" "https://registry.npmjs.org/typed.js/-/typed.js-2.0.14.tgz"
+  "version" "2.0.14"
+
 "ufo@^1.0.0", "ufo@^1.1.0", "ufo@^1.1.1":
   "integrity" "sha512-MvlCc4GHrmZdAllBc0iUDowff36Q9Ndw/UzqmEKyrfSzokTd9ZCy1i+IIk5hrYKkjoYVQyNbrw7/F8XJ2rEwTg=="
   "resolved" "https://registry.npmjs.org/ufo/-/ufo-1.1.1.tgz"
@@ -4602,7 +4612,7 @@
   dependencies:
     "@vue/devtools-api" "^6.4.5"
 
-"vue@^3.0.0", "vue@^3.0.11", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.47", "vue@>=2.7 || >=3", "vue@3.2.47":
+"vue@^3.0.0", "vue@^3.0.11", "vue@^3.1.4", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.47", "vue@>=2.7 || >=3", "vue@3.2.47":
   "integrity" "sha512-60188y/9Dc9WVrAZeUVSDxRQOZ+z+y5nO2ts9jWXSTkMvayiWxCWOWtBQoYjLeccfXkiiPZWAHcV+WTPhkqJHQ=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.47.tgz"
   "version" "3.2.47"
@@ -4612,6 +4622,15 @@
     "@vue/runtime-dom" "3.2.47"
     "@vue/server-renderer" "3.2.47"
     "@vue/shared" "3.2.47"
+
+"vue3typed@^0.1.5":
+  "integrity" "sha512-hJ20Nvuze8uYlAwJj9Q3vCYxQ03ePvyvLIl01XdhIQzyuP0eqPd9n7/9w872LE1skRVC/n4l/YTAnSmymImtpw=="
+  "resolved" "https://registry.npmjs.org/vue3typed/-/vue3typed-0.1.5.tgz"
+  "version" "0.1.5"
+  dependencies:
+    "core-js" "^3.6.5"
+    "typed.js" "^2.0.12"
+    "vue" "^3.1.4"
 
 "vueuc@^0.4.47":
   "integrity" "sha512-pLiMChM4f+W8czlIClGvGBYo656lc2Y0/mXFSCydcSmnCR1izlKPGMgiYBGjbY9FDkFG8a2HEVz7t0DNzBWbDw=="
