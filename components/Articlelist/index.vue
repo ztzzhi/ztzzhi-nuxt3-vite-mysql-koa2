@@ -1,5 +1,8 @@
 <template>
   <div style="width: 100%">
+    <n-back-top :bottom="100" :visibility-height="300">
+      
+    </n-back-top>
     <div class="notice_list">
       <div class="nl_item">
         <div class="nli_img">
@@ -123,11 +126,12 @@
 
 <script>
 import "@/utils/canvasnext";
-import { NButton, NIcon } from "naive-ui";
+import { NButton, NIcon, NBackTop } from "naive-ui";
 export default {
   components: {
     NButton,
     NIcon,
+    NBackTop,
   },
   setup() {
     return {};
@@ -140,6 +144,8 @@ export default {
   margin-left: 0.1rem;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 10;
 
   .nl_item {
     display: flex;
@@ -245,11 +251,11 @@ export default {
         .items {
           display: flex;
           align-items: center;
-          li{
+          li {
             display: flex;
             align-items: center;
             margin-right: 0.1rem;
-            span{
+            span {
               font-size: 0.14rem;
               margin-left: 0.03rem;
             }

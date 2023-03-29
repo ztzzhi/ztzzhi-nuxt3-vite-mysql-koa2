@@ -1,9 +1,15 @@
 <template>
   <div>
     <NuxtLayout name="header"></NuxtLayout>
+    detail
   </div>
 </template>
 
 <script>
-export default {};
+import MarkDown from "@/components/MarkDown"
+export default {
+  components: {
+    MarkDown
+  }
+};
 </script>

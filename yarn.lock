@@ -2882,6 +2882,11 @@
   dependencies:
     "semver" "^6.0.0"
 
+"md-editor-v3@^2.11.0":
+  "integrity" "sha512-k94hCH7PUEOfZkKhWMfv7WHbJOetN59eTSPZoMutXZ3NLKNa8GqEdllHSfdy6XytnVSHlQBbQrmMu7PYyIruvQ=="
+  "resolved" "https://registry.npmjs.org/md-editor-v3/-/md-editor-v3-2.11.0.tgz"
+  "version" "2.11.0"
+
 "mdn-data@2.0.14":
   "integrity" "sha512-dn6wd0uw5GsdswPFfsgMp5NSB0/aDe6fK94YJV/AJDYXL6HVLWBsxeq7js7Ad+mU2K9LAlwpk6kN2D5mwCPVow=="
   "resolved" "https://registry.npmjs.org/mdn-data/-/mdn-data-2.0.14.tgz"
