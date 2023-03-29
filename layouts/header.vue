@@ -5,28 +5,31 @@
         <div class="menu_box">
           <n-menu mode="horizontal" :options="menuData" />
         </div>
-        <div class="header-box-search">
-          <div class="header-search">
-            <n-input-group>
-              <n-input
-                :class="['hs-search', widthTrs ? 'search-width-trans' : '']"
-                @focus="searchFocus"
-                @blur="searchBlur"
-                placeholder="输入你想搜索的文章"
-              />
-            </n-input-group>
+        <div class="right_box">
+          <div class="header-box-search">
+            <div class="header-search">
+              <n-input-group>
+                <n-input
+                  :class="['hs-search', widthTrs ? 'search-width-trans' : '']"
+                  @focus="searchFocus"
+                  @blur="searchBlur"
+                  placeholder="输入你想搜索的文章"
+                />
+              </n-input-group>
+            </div>
+            <div :class="['header_drop_menu']">
+              <n-button type="primary">创作者中心</n-button>
+            </div>
           </div>
-          <div :class="['header_drop_menu']">
-            <n-button type="primary">创作者中心</n-button>
-            <!-- <n-dropdown :options="dropDownOptions" placement="bottom-end">
-              
-            </n-dropdown> -->
-          </div>
+          <NuxtLink to="/" class="logo">
+            <img
+              src="../static/img/header.jpg"
+              alt="博客logo"
+              class="logo-img"
+            />
+            <span class="logo-text">小张很嚣张</span>
+          </NuxtLink>
         </div>
-        <NuxtLink to="/" class="logo">
-          <img src="../static/img/header.jpg" alt="博客logo" class="logo-img" />
-          <span class="logo-text">小张很嚣张</span>
-        </NuxtLink>
       </div>
     </div>
     <slot />
@@ -147,16 +150,17 @@ export default {
   bottom: 0;
   transition: all 0.2s;
   height: 0.6rem;
+  width: 100%;
   z-index: 250;
   transform: translateY(0);
 
   .container {
     width: 100%;
-    max-width: 14.4rem;
     margin: auto;
     display: flex;
     align-items: center;
     background: transparent;
+    justify-content: space-between;
     color: #909090;
     z-index: 250;
     height: 0.6rem;
@@ -181,9 +185,11 @@ export default {
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
         font-weight: bold;
       }
+      .logo-text:hover{
+        color: #49b1f5;
+      }
     }
     .menu_box {
-      width: 7rem;
       color: #fff;
       ::v-deep(
           .n-menu.n-menu--horizontal
@@ -194,19 +200,23 @@ export default {
         color: #fff;
       }
     }
+    .right_box{
+      display: flex;
+      align-items: center;
+    }
     .header-box-search {
-      width: 4rem;
+      width: 3.5rem;
       width: rem;
       display: flex;
       align-items: center;
       overflow: hidden;
       .header-search {
         .hs-search {
-          width: 2.16rem;
+          width: 2rem;
           transition: width 0.3s;
         }
         .search-width-trans {
-          width: 3.48rem;
+          width: 3.5rem;
         }
       }
       .header_drop_menu {

@@ -13,7 +13,7 @@
 import { defineComponent } from "vue";
 import { NConfigProvider } from "naive-ui";
 import { zhCN, dateZhCN } from "naive-ui";
-import "@/utils/clickEffect"
+import "@/utils/clickEffect";
 import "@/static/css/reset.css";
 export default defineComponent({
   components: {
@@ -27,7 +27,7 @@ export default defineComponent({
         common: {
           primaryColor: "#1e80ff",
           primaryColorHover: "#1e80e1",
-          primaryColorPressed:"#1e80c8"
+          primaryColorPressed: "#1e80c8",
         },
       },
     };
@@ -40,7 +40,19 @@ html {
 }
 body {
   font-size: 16px;
-  cursor:url(https://cdn.custom-cursor.com/db/10116/32/mochi-mochi-peach-cat-and-bubble-tea-cursor.png) , default!important
+  cursor: url(https://cdn.custom-cursor.com/db/10116/32/mochi-mochi-peach-cat-and-bubble-tea-cursor.png),
+    default !important;
+}
+a {
+  cursor: url(./static/img/link_select.cur), auto;
+}
+
+a:active {
+  cursor: url(./static/img/person_select.cur), auto;
+}
+
+p {
+  cursor: url(./static/img/normal_select.cur), auto;
 }
 #__nuxt {
   min-height: 100vh;

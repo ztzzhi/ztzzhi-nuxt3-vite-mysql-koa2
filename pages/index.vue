@@ -17,7 +17,12 @@
         </div>
       </section>
       <section class="btm_box">
-        <Info></Info>
+        <div class="bb_mainbox">
+          <div class="bbm_box">
+            <Mineinfo></Mineinfo>
+            <Articlelist></Articlelist>
+          </div>
+        </div>
       </section>
     </div>
   </div>
@@ -25,11 +30,13 @@
 
 <script>
 import vuetyped from "vue3typed/libs/typed";
-import Info from "@/components/info"
+import Mineinfo from "@/components/Mineinfo";
+import Articlelist from "@/components/Articlelist";
 export default {
   components: {
     vuetyped,
-    Info
+    Mineinfo,
+    Articlelist
   },
   setup() {
     const stringTextArr = ref([
@@ -84,6 +91,7 @@ export default {
     .index_main {
       position: absolute;
       width: 100%;
+      padding: 0.5rem;
       height: 5rem;
       transform: translate(-50%, -50%);
       left: 50%;
@@ -98,6 +106,15 @@ export default {
         font-weight: 700;
       }
     }
+  }
+}
+.bb_mainbox {
+  margin: 0 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  .bbm_box {
+    margin-top: 0.5rem;
+    display: flex;
   }
 }
 </style>

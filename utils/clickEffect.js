@@ -111,7 +111,8 @@ function clickEffect () {
         if (b.r < 0) continue;
         ctx.fillStyle = b.color;
         ctx.beginPath();
-        ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2, false);
+        // b.r控制球的半径大小
+        ctx.arc(b.x, b.y, b.r/5, 0, Math.PI * 2, false);
         ctx.fill();
         b.update();
       }
