@@ -3,7 +3,7 @@
     <div :class="['ztz-header', isShowTopBar ? '' : 'disvisible']">
       <div class="container">
         <div class="menu_box">
-          <n-menu mode="horizontal" :options="menuData" />
+          <n-menu mode="horizontal" :options="menuData" value="/" />
         </div>
         <div class="right_box">
           <div class="header-box-search">
@@ -18,7 +18,7 @@
               </n-input-group>
             </div>
             <div :class="['header_drop_menu']">
-              <n-button type="primary">创作者中心</n-button>
+              <n-button type="primary" @click="toWrite">创作者中心</n-button>
             </div>
           </div>
           <NuxtLink to="/" class="logo">
@@ -62,6 +62,7 @@ export default {
     NAvatar,
   },
   setup() {
+    const router = useRouter();
     const isShowTopBar = ref(true);
     onMounted(() => {
       if (process.client) {
@@ -80,20 +81,20 @@ export default {
 
     const menuData: MenuOption[] = [
       {
-        label: () => <nuxt-link to="/mine">首页</nuxt-link>,
-        key: "hear-the-wind-sing",
+        label: () => <nuxt-link to="/">首页</nuxt-link>,
+        key: "/",
       },
       {
         label: () => <nuxt-link to="/center">我的</nuxt-link>,
-        key: "pinball-1973",
+        key: "/center",
       },
       {
         label: () => <nuxt-link to="/link">友链</nuxt-link>,
-        key: "pinball-1972",
+        key: "/link",
       },
       {
         label: () => <nuxt-link to="/about">关于我</nuxt-link>,
-        key: "pinball-1971",
+        key: "/about",
       },
     ];
 
@@ -129,6 +130,9 @@ export default {
     const searchBlur = () => {
       app.widthTrs = false;
     };
+    const toWrite = () => {
+      router.push("/write");
+    };
     return {
       isShowTopBar,
       menuData,
@@ -136,6 +140,7 @@ export default {
       searchBlur,
       ...toRefs(app),
       dropDownOptions,
+      toWrite,
     };
   },
 };
@@ -185,7 +190,7 @@ export default {
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
         font-weight: bold;
       }
-      .logo-text:hover{
+      .logo-text:hover {
         color: #49b1f5;
       }
     }
@@ -199,8 +204,16 @@ export default {
         ) {
         color: #fff;
       }
+      ::v-deep(
+          .n-menu.n-menu--horizontal
+            .n-menu-item-content
+            .n-menu-item-content-header
+            a:hover
+        ) {
+        color: #3ca5f6;
+      }
     }
-    .right_box{
+    .right_box {
       display: flex;
       align-items: center;
     }

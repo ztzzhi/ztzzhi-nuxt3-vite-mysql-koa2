@@ -25,6 +25,7 @@
         </div>
       </section>
     </div>
+    <NuxtLayout name="footer"></NuxtLayout>
   </div>
 </template>
 
@@ -36,7 +37,7 @@ export default {
   components: {
     vuetyped,
     Mineinfo,
-    Articlelist
+    Articlelist,
   },
   setup() {
     const stringTextArr = ref([
@@ -73,7 +74,7 @@ export default {
       content: "";
     }
     .btm_box {
-      height: 100vh;
+      height: auto;
       position: relative;
       width: 100%;
       background: linear-gradient(
@@ -114,6 +115,7 @@ export default {
   overflow: hidden;
   .bbm_box {
     margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     display: flex;
   }
 }

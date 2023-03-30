@@ -37,11 +37,11 @@ export default defineComponent({
 <style>
 html {
   font-size: 100px;
+  cursor: url(./static/img/cursor.png),default !important;
 }
 body {
   font-size: 16px;
-  cursor: url(https://cdn.custom-cursor.com/db/10116/32/mochi-mochi-peach-cat-and-bubble-tea-cursor.png),
-    default !important;
+  cursor: url(./static/img/cursor.png),default !important;
 }
 a {
   cursor: url(./static/img/link_select.cur), auto;

@@ -1,10 +1,8 @@
 <template>
   <div style="width: 100%">
-    <n-back-top :bottom="100" :visibility-height="300">
-      
-    </n-back-top>
+    <n-back-top :bottom="100" :visibility-height="300"> </n-back-top>
     <div class="notice_list">
-      <div class="nl_item">
+      <div v-for="item in listData" :key="item" class="nl_item">
         <div class="nli_img">
           <img
             src="https://img.cdn.sugarat.top/mdImg/MTY3OTczMTQ2Njk4MQ==679731466981"
@@ -134,12 +132,15 @@ export default {
     NBackTop,
   },
   setup() {
-    return {};
+    let listData = ref([{}, {}, {}, {}, {}]);
+    return {
+      listData,
+    };
   },
 };
 </script>
 
-<style scoped lang="less">
+<style  lang="less">
 .notice_list {
   margin-left: 0.1rem;
   display: flex;
@@ -153,6 +154,7 @@ export default {
     padding: 0.2rem;
     border-radius: 10px;
     margin-bottom: 0.1rem;
+    animation: slideInUp .5s ease;
     .nli_img {
       width: 2.1rem;
       height: 1.4rem;
@@ -270,7 +272,7 @@ export default {
   }
 }
 
-.nl_item :hover .nli_title::after {
+.nl_item:hover .nli_title::after {
   width: 100% !important;
 }
 .nl_item:hover .img_mask {
@@ -284,6 +286,17 @@ export default {
   to {
     transform: translate3d(0, 100%, 0);
     visibility: hidden;
+  }
+}
+@keyframes slideInUp {
+  0% {
+    transform: translateY(100px);
+    visibility: hidden;
+  }
+
+  to {
+    transform: translateY(0);
+    visibility: visible;
   }
 }
 </style>
