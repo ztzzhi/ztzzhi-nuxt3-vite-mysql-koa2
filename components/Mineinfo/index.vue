@@ -66,10 +66,6 @@
             </svg>
           </NIcon>
         </NuxtLink>
-
-        <!-- <n-icon size="40">
-        <email-round />
-      </n-icon> -->
       </div>
     </div>
     <div class="mine_notice">
@@ -94,7 +90,7 @@
         </NIcon>
         <span class="notice_name">公告</span>
       </div>
-      <div class="announcement_content">This is my Blog</div>
+      <div class="announcement_content">欢迎来到我的博客～</div>
     </div>
   </div>
 </template>

@@ -1,22 +1,25 @@
 <template>
   <div style="width: 100%">
     <n-back-top :bottom="100" :visibility-height="300"> </n-back-top>
-    <div class="notice_list">
-      <div v-for="item in listData" :key="item" class="nl_item">
+    <div class="notice_list cussor">
+      <div
+        v-for="item in listData"
+        :key="item"
+        class="nl_item"
+        @click="handleNavigate(item)"
+      >
         <div class="nli_img">
-          <img
-            src="https://img.cdn.sugarat.top/mdImg/MTY3OTczMTQ2Njk4MQ==679731466981"
-            alt=""
-          />
+          <img :src="item.img" alt="img" />
           <div class="img_mask">Web前端开发</div>
         </div>
         <div class="nli_right">
           <div class="nli_title">
-            <span class="badge" style="display: inline-block">置顶</span
-            >基于Kubernetes的CICD实战
+            <span class="badge" style="display: inline-block" v-if="item.isTop"
+              >置顶</span
+            >{{ item.title }}
           </div>
           <div class="nli_des">
-            啊是打卡时间到卡拉斯京德拉吉拉大家顺利到家啊来得及垃圾的啦时间德拉吉拉到家了吉拉大家顺利到家啊来得及垃圾的啦时间德拉吉拉到家了吉拉大家顺利到家啊来得及垃圾的啦时间德拉吉拉到家了啊是打卡时间到卡拉斯京德拉吉拉大家顺利到家啊来得及垃圾的啦时间德拉吉拉到家了吉拉大家顺利到家啊来得及垃圾的啦时间德拉吉拉到家了吉拉大家顺利到家啊来得及垃圾的啦时间德拉吉拉到家了
+            {{ item.desc }}
           </div>
           <div class="operation_btn">
             <div class="ob_l">
@@ -40,7 +43,7 @@
                       ></path>
                     </svg>
                   </n-icon>
-                  <span>678</span>
+                  <span>{{ item.viewNum }}</span>
                 </li>
                 <li>
                   <n-icon>
@@ -76,7 +79,7 @@
                       ></path>
                     </svg>
                   </n-icon>
-                  <span>333</span>
+                  <span>{{ item.praiseNum }}</span>
                 </li>
                 <li>
                   <n-icon>
@@ -110,14 +113,21 @@
                         p-id="5169"
                         fill="#666666"
                       ></path></svg></n-icon
-                  ><span>123132</span>
+                  ><span>{{ item.commentNum }}</span>
                 </li>
               </ul>
             </div>
-            <div class="ob_r">2022-10-17</div>
+            <div class="ob_r">
+              {{ dayjs(item.createdAt).format("YYYY/MM/DD HH:ss:mm") }}
+            </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="look_more">
+      <span class="cussor" @click="lookmore">{{
+        !noMore ? "查看更多" : "没有更多了～"
+      }}</span>
     </div>
   </div>
 </template>
@@ -125,22 +135,52 @@
 <script>
 import "@/utils/canvasnext";
 import { NButton, NIcon, NBackTop } from "naive-ui";
+import dayjs from "dayjs";
 export default {
   components: {
     NButton,
     NIcon,
     NBackTop,
   },
-  setup() {
-    let listData = ref([{}, {}, {}, {}, {}]);
+  props: {
+    data: {
+      type: Array,
+      default: [],
+    },
+    noMore: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  setup(props, { emit }) {
+    const router = useRouter();
+    let listData = ref([]);
+    let noMore = ref(false);
+    watchEffect(() => {
+      listData.value = props.data;
+    });
+    watchEffect(() => {
+      noMore.value = props.noMore;
+    });
+    const handleNavigate = (item) => {
+      router.push("/detail?id=" + item.id);
+    };
+    const lookmore = () => {
+      if (noMore.value) return;
+      emit("load");
+    };
     return {
       listData,
+      dayjs,
+      handleNavigate,
+      lookmore,
+      noMore,
     };
   },
 };
 </script>
 
-<style  lang="less">
+<style lang="less">
 .notice_list {
   margin-left: 0.1rem;
   display: flex;
@@ -154,7 +194,7 @@ export default {
     padding: 0.2rem;
     border-radius: 10px;
     margin-bottom: 0.1rem;
-    animation: slideInUp .5s ease;
+    animation: slideInUp 0.5s ease;
     .nli_img {
       width: 2.1rem;
       height: 1.4rem;
@@ -234,7 +274,7 @@ export default {
       .nli_des {
         line-height: 0.24rem;
         margin-top: 0.05rem;
-        max-height: 75px;
+        height: 75px;
         color: #666;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -269,6 +309,23 @@ export default {
         text-align: right;
       }
     }
+  }
+}
+.look_more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+    width: 1.2rem;
+    height: 0.3rem;
+    text-align: center;
+    line-height: 0.3rem;
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 0px 10px -5px #949494;
+    color: #888;
+    font-size: 0.13rem;
+    -webkit-user-select: none;
   }
 }
 

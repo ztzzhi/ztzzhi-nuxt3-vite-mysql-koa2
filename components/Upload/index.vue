@@ -3,7 +3,7 @@
     <n-upload
       accept="image/*"
       class="selfupload"
-      :max="4"
+      :max="max ? max : 1"
       :action="imgUploadUrl"
       list-type="image-card"
       :on-finish="uploadChange"
@@ -27,6 +27,10 @@ export default {
     value: {
       type: Array,
       default: [],
+    },
+    max: {
+      type: Number,
+      default: 1,
     },
   },
   components: {

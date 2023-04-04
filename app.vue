@@ -5,19 +5,22 @@
       :date-locale="dateZhCN"
       :theme-overrides="themeOverrides"
     >
-      <NuxtPage></NuxtPage>
+      <n-message-provider>
+        <NuxtPage></NuxtPage>
+      </n-message-provider>
     </n-config-provider>
   </div>
 </template>
 <script>
 import { defineComponent } from "vue";
-import { NConfigProvider } from "naive-ui";
+import { NConfigProvider, NMessageProvider } from "naive-ui";
 import { zhCN, dateZhCN } from "naive-ui";
 import "@/utils/clickEffect";
 import "@/static/css/reset.css";
 export default defineComponent({
   components: {
     NConfigProvider,
+    NMessageProvider,
   },
   setup() {
     return {
@@ -37,13 +40,15 @@ export default defineComponent({
 <style>
 html {
   font-size: 100px;
-  cursor: url(./static/img/cursor.png),default !important;
+  cursor: url(./static/img/cursor.png), default !important;
+  background-color: #f1f1f1;
 }
 body {
   font-size: 16px;
-  cursor: url(./static/img/cursor.png),default !important;
+  cursor: url(./static/img/cursor.png), default !important;
 }
-a {
+a,
+.cussor {
   cursor: url(./static/img/link_select.cur), auto;
 }
 

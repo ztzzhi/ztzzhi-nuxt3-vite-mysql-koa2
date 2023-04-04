@@ -20,7 +20,11 @@
         <div class="bb_mainbox">
           <div class="bbm_box">
             <Mineinfo></Mineinfo>
-            <Articlelist></Articlelist>
+            <Articlelist
+              v-model:data="listData"
+              @load="loadMore"
+              v-model:noMore="noMore"
+            ></Articlelist>
           </div>
         </div>
       </section>
@@ -44,8 +48,46 @@ export default {
       "人生就是不断取舍的过程，你可以拥有很多，但终究要放弃很多",
       "一个人的勇气，不是看他有多么强大，而是看他在多大的困难面前依然坚持",
     ]);
+    const listData = ref([]);
+    const page = ref(1);
+    const total = ref(1);
+    const noMore = ref(false);
+
+    const getList = async (page = 1) => {
+      if (page > total.value) return;
+
+      const res = await useFetch("http://localhost:7001/v1/article", {
+        key: new Date().getTime() + "",
+        method: "GET",
+        params: {
+          page,
+          page_size: 6,
+        },
+      });
+      if (res?.data?.value?.code == 200) {
+        listData.value = [
+          ...listData.value,
+          ...res?.data?.value?.result?.lists,
+        ];
+        total.value = res?.data?.value?.result?.total;
+        if (page >= total.value) {
+          noMore.value = true;
+        }
+      }
+    };
+    getList();
+
+    const loadMore = () => {
+      console.log(123123);
+      page.value += 1;
+      getList(page.value);
+    };
     return {
       stringTextArr,
+      listData,
+      loadMore,
+      page,
+      noMore,
     };
   },
 };

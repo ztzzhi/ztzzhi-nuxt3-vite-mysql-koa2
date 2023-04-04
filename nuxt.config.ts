@@ -16,6 +16,7 @@ export default defineNuxtConfig({
   alias: {
     '@': resolve(__dirname, '.'),
   },
+  ssr: process.env.NODE_ENV !== "development",
   vite: {
     optimizeDeps: {
       include:

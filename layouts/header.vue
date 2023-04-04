@@ -158,6 +158,7 @@ export default {
   width: 100%;
   z-index: 250;
   transform: translateY(0);
+  background-color: rgba(255, 255, 255, .4);
 
   .container {
     width: 100%;
@@ -178,7 +179,7 @@ export default {
       display: inline-block;
       display: flex;
       align-items: center;
-      color: #fff;
+      color: #515767;
       .logo-img {
         width: 0.36rem;
         height: 0.36rem;
@@ -195,14 +196,13 @@ export default {
       }
     }
     .menu_box {
-      color: #fff;
       ::v-deep(
           .n-menu.n-menu--horizontal
             .n-menu-item-content
             .n-menu-item-content-header
             a
         ) {
-        color: #fff;
+        color: #515767;
       }
       ::v-deep(
           .n-menu.n-menu--horizontal

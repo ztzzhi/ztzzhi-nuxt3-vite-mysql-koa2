@@ -8,6 +8,7 @@
         placeholder="请输入文章标题..."
         :maxlength="30"
         :minlength="1"
+        v-model:value="title"
       />
       <n-button class="rbtn" type="primary" @click="toSend">发布</n-button>
     </div>
@@ -18,6 +19,8 @@
         v-model:modalshow="modalshow"
         @update:modalshow="modalchange"
         @update:confirm="onConfirm"
+        v-model:loading="loading"
+        v-model:isClear="isClear"
       ></MarkDown>
     </div>
   </div>
@@ -25,7 +28,7 @@
 
 <script>
 import MarkDown from "@/components/MarkDown";
-import { NInput, NButton, NModal } from "naive-ui";
+import { NInput, NButton, NModal, useMessage } from "naive-ui";
 export default {
   components: {
     MarkDown,
@@ -34,8 +37,12 @@ export default {
     NModal,
   },
   setup() {
+    const message = useMessage();
     const mytext = ref("");
+    const title = ref("");
+    const loading = ref(false);
     const modalshow = ref(false);
+    const isClear = ref(false);
     const handleChange = (val) => {
       console.log(val, "val123");
     };
@@ -43,18 +50,57 @@ export default {
       console.log(val, "va");
     };
     const toSend = () => {
+      if (!title.value) {
+        message.error("请输入文章标题！");
+        return;
+      }
+      if (!mytext.value) {
+        message.error("请输入文章内容！");
+        return;
+      }
       modalshow.value = true;
     };
     const onConfirm = (val) => {
-      console.log(val,'asdasd');
+      let data = {
+        title: title.value,
+        content: mytext.value,
+        ...val,
+        img: val.img.toString(),
+      };
+      console.log(data, "asdasd");
+      loading.value = true;
+      useFetch("http://localhost:7001/v1/article/add", {
+        key: new Date().getTime() + "",
+        method: "POST",
+        body: data,
+      })
+        .then((res) => {
+          if (res.data?.value?.code == 200) {
+            message.success("新增成功")
+            reset();
+          }
+        })
+        .finally(() => {
+          loading.value = false;
+        });
+    };
+    const reset = () => {
+      modalshow.value = false;
+      title.value = "";
+      mytext.value = "";
+      isClear.value = true;
     };
     return {
+      title,
+      loading,
+      isClear,
       mytext,
       handleChange,
       modalchange,
       modalshow,
       toSend,
-      onConfirm
+      onConfirm,
+      reset,
     };
   },
 };

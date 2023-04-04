@@ -5,7 +5,7 @@
       v-model="text"
       :pageFullscreen="false"
       @onUploadImg="onUploadImg"
-      @onSave="codeSave"
+      @onChange="codeSave"
     >
     </MdEditor>
     <n-modal
@@ -37,6 +37,9 @@
                 placeholder="请选择文章分类"
               />
             </n-form-item-gi>
+            <n-form-item-gi :span="24" label="是否置顶" path="isTop">
+              <n-switch v-model:value="formModel.isTop" />
+            </n-form-item-gi>
             <n-form-item-gi :span="24" label="编辑摘要" path="desc">
               <n-input
                 v-model:value="formModel.desc"
@@ -59,7 +62,7 @@
         <template #footer>
           <n-space justify="end">
             <n-button @click="closeModal">取消</n-button>
-            <n-button type="primary" @click="handleConfirm"
+            <n-button type="primary" :loading="loading" @click="handleConfirm"
               >确认并发布</n-button
             >
           </n-space>
@@ -73,6 +76,8 @@
 import MdEditor from "md-editor-v3";
 import Upload from "../Upload";
 import "md-editor-v3/lib/style.css";
+import { imgUploadUrl, secret } from "@/config";
+
 import {
   NModal,
   NCard,
@@ -84,6 +89,8 @@ import {
   NUpload,
   NSpace,
   NButton,
+  NSwitch,
+  useMessage,
 } from "naive-ui";
 
 export default {
@@ -93,6 +100,18 @@ export default {
       default: "",
     },
     modalshow: {
+      type: Boolean,
+      default: false,
+    },
+    uploadUrl: {
+      type: String,
+      default: imgUploadUrl,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+    isClear: {
       type: Boolean,
       default: false,
     },
@@ -110,14 +129,50 @@ export default {
     NSpace,
     NButton,
     Upload,
+    NSwitch,
   },
   setup(props, { emit }) {
+    const message = useMessage();
     const text = ref(props.value);
+    const loading = ref(props.loading);
+    const isClear = ref(props.isClear);
+    watchEffect(() => {
+      loading.value = props.loading;
+    });
+    watchEffect(() => {
+      isClear.value = props.isClear;
+      if (isClear.value) {
+        formModel.value = {
+          secret: "",
+          tag: "",
+          desc: "",
+          img: [],
+          isTop: false,
+        };
+      }
+    });
     const codeSave = (val) => {
       emit("update:value", val);
     };
     let showModal = ref(props.modalshow || false);
-    const onUploadImg = () => {};
+    const onUploadImg = async (files, callback) => {
+      const res = await Promise.all(
+        files.map((file) => {
+          return new Promise((resolve, reject) => {
+            const form = new FormData();
+            form.append("file", file);
+            useFetch(props.uploadUrl, {
+              key: new Date().getTime() + "",
+              method: "POST",
+              body: form,
+            })
+              .then((res) => resolve(res))
+              .catch((err) => reject(err));
+          });
+        })
+      );
+      callback(res.map((item) => item.data.value.result));
+    };
     const modalChange = (flag) => {
       if (!flag) {
         formModel.value = {
@@ -125,6 +180,7 @@ export default {
           tag: "",
           desc: "",
           img: [],
+          isTop: false,
         };
       }
       showModal.value = flag;
@@ -142,13 +198,18 @@ export default {
       tag: "",
       desc: "",
       img: [],
+      isTop: false,
     });
 
     const handleConfirm = (e) => {
       e.preventDefault();
       formRef.value?.validate((error) => {
         if (!error) {
-          emit("update:confirm",formModel.value)
+          if (formModel.value.secret != secret) {
+            message.error("只有博主本人才可以发文章哦～");
+            return;
+          }
+          emit("update:confirm", formModel.value);
         } else {
           console.log("error");
         }
@@ -161,6 +222,7 @@ export default {
         tag: "",
         desc: "",
         img: [],
+        isTop: false,
       };
       showModal.value = false;
       emit("update:modalshow", false);
@@ -175,6 +237,7 @@ export default {
       formRef,
       formModel,
       handleConfirm,
+      isClear,
       rules: {
         secret: {
           required: true,
@@ -184,7 +247,7 @@ export default {
         tag: {
           required: true,
           trigger: ["blur", "change"],
-          message: "请选择标签",
+          message: "请选择分类",
         },
         desc: {
           required: true,
@@ -205,6 +268,7 @@ export default {
         })
       ),
       closeModal,
+      loading,
     };
   },
 };
