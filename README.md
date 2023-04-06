@@ -12,6 +12,9 @@
 后端使用 Koa2 + Mysql + Sequlize 进行开发
 暂未开发后台管理系统
 
+# 服务端代码单独仓库 
+https://github.com/ztzzhi/nuxt3-mysql-koa2
+
 # node版本 v16.14.0
 其他版本如若出现依赖安装失败等情况 请切换到该node版本进行依赖的安装
 
