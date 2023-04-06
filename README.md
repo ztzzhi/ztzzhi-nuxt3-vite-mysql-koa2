@@ -20,27 +20,27 @@
 
 首页
 
-http://www.ditnow.cn:7001/1680769293666.png
+![](http://www.ditnow.cn:7001/1680769293666.png
 
-[](http://www.ditnow.cn:7001/1680769413026.png)
+![](http://www.ditnow.cn:7001/1680769413026.png)
 
-[](http://www.ditnow.cn:7001/1680769451557.png)
+![](http://www.ditnow.cn:7001/1680769451557.png)
 
 详情页
 
-[](http://www.ditnow.cn:7001/1680769470587.png)
+![](http://www.ditnow.cn:7001/1680769470587.png)
 
 文章发布页
 
-[](http://www.ditnow.cn:7001/1680769489069.png)
+![](http://www.ditnow.cn:7001/1680769489069.png)
 
 资源页
 
-[](http://www.ditnow.cn:7001/1680769508372.png)
+![](http://www.ditnow.cn:7001/1680769508372.png)
 
 关于我
 
-[](http://www.ditnow.cn:7001/1680769524616.png)
+![](http://www.ditnow.cn:7001/1680769524616.png)
 
 
 # 如有其他问题联系作者邮箱
