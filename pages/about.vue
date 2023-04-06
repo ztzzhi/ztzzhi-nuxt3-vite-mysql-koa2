@@ -112,6 +112,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     color: #fff;
+    height: 2rem;
     background: linear-gradient(120deg, #5b27ff 0, #00d4ff 100%);
     background-size: 200%;
     animation: gradient 15s ease infinite;
@@ -129,6 +130,7 @@ export default {
   .contro {
     display: flex;
     flex: 2;
+    height: 2rem;
     flex-direction: column;
     justify-content: center;
     color: #333;
