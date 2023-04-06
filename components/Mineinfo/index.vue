@@ -49,7 +49,7 @@
           </NIcon>
         </NuxtLink>
         <NuxtLink
-          to="https://github.com/ztzzhi/nuxt3-vite-mysql"
+          to="https://github.com/ztzzhi/ztzzhi-nuxt3-vite-mysql-koa2"
           target="_blank"
         >
           <NIcon size="25">
@@ -116,7 +116,7 @@ export default {
   },
   setup() {
     const hanldToGithub = () => {
-      window.open("https://github.com/ztzzhi/nuxt3-vite-mysql");
+      window.open("https://github.com/ztzzhi/ztzzhi-nuxt3-vite-mysql-koa2");
     };
     return { hanldToGithub };
   },

@@ -41,7 +41,7 @@
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://github.com/ztzzhi/nuxt3-vite-mysql"
+                href="https://github.com/ztzzhi/ztzzhi-nuxt3-vite-mysql-koa2"
                 ><svg
                   version="1.1"
                   width="20"
