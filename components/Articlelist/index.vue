@@ -4,7 +4,7 @@
     <div class="notice_list cussor">
       <div
         v-for="item in listData"
-        :key="item"
+        :key="item.id"
         class="nl_item"
         @click="handleNavigate(item)"
       >
@@ -81,7 +81,7 @@
                   </n-icon>
                   <span>{{ item.praiseNum }}</span>
                 </li>
-                <li>
+                <!-- <li>
                   <n-icon>
                     <svg
                       t="1680081858924"
@@ -114,7 +114,7 @@
                         fill="#666666"
                       ></path></svg></n-icon
                   ><span>{{ item.commentNum }}</span>
-                </li>
+                </li> -->
               </ul>
             </div>
             <div class="ob_r">
@@ -157,6 +157,7 @@ export default {
     let listData = ref([]);
     let noMore = ref(false);
     watchEffect(() => {
+      console.log(12313);
       listData.value = props.data;
     });
     watchEffect(() => {
@@ -305,6 +306,7 @@ export default {
         }
       }
       .ob_r {
+        color: #999;
         width: 1.5rem;
         text-align: right;
       }

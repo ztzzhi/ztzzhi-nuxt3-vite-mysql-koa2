@@ -32,9 +32,9 @@
             </n-form-item-gi>
             <n-form-item-gi :span="24" label="文章分类" path="tag">
               <n-select
-                :options="generalOptions"
-                v-model:value="formModel.tag"
                 placeholder="请选择文章分类"
+                v-model:value="formModel.tag"
+                :options="generalOptions"
               />
             </n-form-item-gi>
             <n-form-item-gi :span="24" label="是否置顶" path="isTop">
@@ -77,7 +77,7 @@ import MdEditor from "md-editor-v3";
 import Upload from "../Upload";
 import "md-editor-v3/lib/style.css";
 import { imgUploadUrl, secret } from "@/config";
-
+import { getCategory } from "@/api";
 import {
   NModal,
   NCard,
@@ -136,6 +136,7 @@ export default {
     const text = ref(props.value);
     const loading = ref(props.loading);
     const isClear = ref(props.isClear);
+    const generalOptions = ref([]);
     watchEffect(() => {
       loading.value = props.loading;
     });
@@ -144,40 +145,52 @@ export default {
       if (isClear.value) {
         formModel.value = {
           secret: "",
-          tag: "",
+          tag: null,
           desc: "",
           img: [],
           isTop: false,
         };
       }
     });
+    const getCategoryData = async () => {
+      const res = await getCategory();
+      if (res?.code == 200) {
+        console.log(res, "res");
+        generalOptions.value = res.result?.map((item) => {
+          return {
+            label: item.label,
+            value: item.label,
+          };
+        });
+      }
+    };
+    getCategoryData();
     const codeSave = (val) => {
       emit("update:value", val);
     };
     let showModal = ref(props.modalshow || false);
     const onUploadImg = async (files, callback) => {
-      const res = await Promise.all(
-        files.map((file) => {
-          return new Promise((resolve, reject) => {
-            const form = new FormData();
-            form.append("file", file);
-            useFetch(props.uploadUrl, {
-              key: new Date().getTime() + "",
-              method: "POST",
-              body: form,
-            })
-              .then((res) => resolve(res))
-              .catch((err) => reject(err));
-          });
-        })
-      );
+      const allIt = files.map((file) => {
+        return new Promise((resolve, reject) => {
+          const form = new FormData();
+          form.append("file", file);
+          useFetch(props.uploadUrl, {
+            key: new Date().getTime() + "",
+            method: "POST",
+            body: form,
+          })
+            .then((res) => resolve(res))
+            .catch((err) => reject(err));
+        });
+      });
+      const res = await Promise.all(allIt);
       callback(res.map((item) => item.data.value.result));
     };
     const modalChange = (flag) => {
       if (!flag) {
         formModel.value = {
           secret: "",
-          tag: "",
+          tag: null,
           desc: "",
           img: [],
           isTop: false,
@@ -195,7 +208,7 @@ export default {
     const formRef = ref(null);
     const formModel = ref({
       secret: "",
-      tag: "",
+      tag: null,
       desc: "",
       img: [],
       isTop: false,
@@ -219,7 +232,7 @@ export default {
     const closeModal = () => {
       formModel.value = {
         secret: "",
-        tag: "",
+        tag: null,
         desc: "",
         img: [],
         isTop: false,
@@ -261,12 +274,7 @@ export default {
           message: "请上传图片",
         },
       },
-      generalOptions: ["groode", "veli good", "emazing", "lidiculous"].map(
-        (v) => ({
-          label: v,
-          value: v,
-        })
-      ),
+      generalOptions,
       closeModal,
       loading,
     };

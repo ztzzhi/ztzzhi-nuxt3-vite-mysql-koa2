@@ -9,11 +9,19 @@
           <div class="header-box-search">
             <div class="header-search">
               <n-input-group>
-                <n-input
+                <n-select
                   :class="['hs-search', widthTrs ? 'search-width-trans' : '']"
                   @focus="searchFocus"
                   @blur="searchBlur"
+                  :show-arrow="false"
                   placeholder="输入你想搜索的文章"
+                  @search="handleSearch"
+                  @change="handleChange"
+                  filterable
+                  clearable
+                  v-model:value="selectValue"
+                  :options="selectOptions"
+                  remote
                 />
               </n-input-group>
             </div>
@@ -44,6 +52,7 @@ import {
   NDropdown,
   NIcon,
   NAvatar,
+  NSelect,
 } from "naive-ui";
 import type { MenuOption } from "naive-ui";
 import {
@@ -51,6 +60,7 @@ import {
   Pencil as EditIcon,
   LogOutOutline as LogoutIcon,
 } from "@vicons/ionicons5";
+import { getSearchByKeyword } from "@/api";
 export default {
   components: {
     NButton,
@@ -60,10 +70,12 @@ export default {
     NDropdown,
     NIcon,
     NAvatar,
+    NSelect,
   },
   setup() {
     const router = useRouter();
     const isShowTopBar = ref(true);
+    const selectValue = ref(null);
     onMounted(() => {
       if (process.client) {
         window.onscroll = () => {
@@ -85,8 +97,8 @@ export default {
         key: "/",
       },
       {
-        label: () => <nuxt-link to="/center">我的</nuxt-link>,
-        key: "/center",
+        label: () => <nuxt-link to="/resource">资源中心</nuxt-link>,
+        key: "/resource",
       },
       {
         label: () => <nuxt-link to="/link">友链</nuxt-link>,
@@ -133,6 +145,28 @@ export default {
     const toWrite = () => {
       router.push("/write");
     };
+
+    const selectOptions = ref([]);
+    const handleSearch = async (val: string) => {
+      if (!val) return;
+      const res = await getSearchByKeyword({keyword:val});
+      if (res?.code == 200) {
+        selectOptions.value = res?.result?.map((item: any) => {
+          return {
+            ...item,
+            label: item.title,
+            value: item.id,
+          };
+        });
+      }
+    };
+
+    const handleChange = (id: number) => {
+      router.push("/detail?id=" + id);
+      nextTick(() => {
+        selectValue.value = null;
+      });
+    };
     return {
       isShowTopBar,
       menuData,
@@ -141,6 +175,10 @@ export default {
       ...toRefs(app),
       dropDownOptions,
       toWrite,
+      handleSearch,
+      handleChange,
+      selectOptions,
+      selectValue,
     };
   },
 };
@@ -158,7 +196,7 @@ export default {
   width: 100%;
   z-index: 250;
   transform: translateY(0);
-  background-color: rgba(255, 255, 255, .4);
+  background-color: rgba(255, 255, 255, 0.8);
 
   .container {
     width: 100%;

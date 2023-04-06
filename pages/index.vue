@@ -19,7 +19,7 @@
       <section class="btm_box">
         <div class="bb_mainbox">
           <div class="bbm_box">
-            <Mineinfo></Mineinfo>
+            <Mineinfo :data="statistics"></Mineinfo>
             <Articlelist
               v-model:data="listData"
               @load="loadMore"
@@ -37,6 +37,7 @@
 import vuetyped from "vue3typed/libs/typed";
 import Mineinfo from "@/components/Mineinfo";
 import Articlelist from "@/components/Articlelist";
+import { getMenuInfo, getArticleStatistics } from "@/api";
 export default {
   components: {
     vuetyped,
@@ -52,33 +53,34 @@ export default {
     const page = ref(1);
     const total = ref(1);
     const noMore = ref(false);
+    const statistics = ref({})
+
+    const getArticleS = async () => {
+      const res = await getArticleStatistics();
+      statistics.value = res?.result
+      console.log(res,'res');
+    };
 
     const getList = async (page = 1) => {
       if (page > total.value) return;
 
-      const res = await useFetch("http://localhost:7001/v1/article", {
-        key: new Date().getTime() + "",
-        method: "GET",
-        params: {
-          page,
-          page_size: 6,
-        },
+      const res = await getMenuInfo({
+        page,
+        page_size: 6,
       });
-      if (res?.data?.value?.code == 200) {
-        listData.value = [
-          ...listData.value,
-          ...res?.data?.value?.result?.lists,
-        ];
-        total.value = res?.data?.value?.result?.total;
+      if (res?.code == 200) {
+        listData.value = [...listData.value, ...res?.result?.lists];
+        total.value = res?.result?.total;
         if (page >= total.value) {
           noMore.value = true;
         }
       }
     };
+
+    getArticleS();
     getList();
 
     const loadMore = () => {
-      console.log(123123);
       page.value += 1;
       getList(page.value);
     };
@@ -88,6 +90,7 @@ export default {
       loadMore,
       page,
       noMore,
+      statistics
     };
   },
 };
@@ -96,6 +99,7 @@ export default {
 <style lang="less">
 .index_box {
   width: 100%;
+  overflow: hidden;
   .index_out_box {
     .top_box {
       height: 100vh;
@@ -119,6 +123,7 @@ export default {
       height: auto;
       position: relative;
       width: 100%;
+      min-height: 100vh;
       background: linear-gradient(
         90deg,
         rgba(247, 149, 51, 0.1),

@@ -9,21 +9,23 @@
         </div>
       </div>
       <div class="info_data">
-        <NuxtLink to="/articles" class="data_box">
-          <div class="headline">文章数</div>
-          <div class="length-num">2</div>
+        <NuxtLink to="/" class="data_box">
+          <div class="headline">文章量</div>
+          <div class="length-num">{{ data.articleNum || 0 }}</div>
         </NuxtLink>
-        <NuxtLink to="/articles" class="data_box">
-          <div class="headline">点赞数</div>
-          <div class="length-num">2</div>
+        <NuxtLink to="/" class="data_box">
+          <div class="headline">点赞量</div>
+          <div class="length-num">{{ data.praiseNum || 0 }}</div>
         </NuxtLink>
-        <NuxtLink to="/articles" class="data_box">
-          <div class="headline">评论数</div>
-          <div class="length-num">2</div>
+        <NuxtLink to="/" class="data_box">
+          <div class="headline">浏览量</div>
+          <div class="length-num">{{ data.viewNum || 0 }}</div>
         </NuxtLink>
       </div>
       <div class="info_follow">
-        <n-button type="success" ghost> GitHub Me </n-button>
+        <n-button type="success" ghost @click="hanldToGithub">
+          GitHub Me
+        </n-button>
       </div>
       <div class="info_icon">
         <NuxtLink to="mailto:ztzzkk2020@163.com">
@@ -46,7 +48,10 @@
             </svg>
           </NIcon>
         </NuxtLink>
-        <NuxtLink to="https://github.com/ztzzhi/nuxt3-vite-mysql"  target="_blank">
+        <NuxtLink
+          to="https://github.com/ztzzhi/nuxt3-vite-mysql"
+          target="_blank"
+        >
           <NIcon size="25">
             <svg
               t="1680074024303"
@@ -103,8 +108,17 @@ export default {
     NButton,
     NIcon,
   },
+  props: {
+    data: {
+      type: Object,
+      default: {},
+    },
+  },
   setup() {
-    return {};
+    const hanldToGithub = () => {
+      window.open("https://github.com/ztzzhi/nuxt3-vite-mysql");
+    };
+    return { hanldToGithub };
   },
 };
 </script>

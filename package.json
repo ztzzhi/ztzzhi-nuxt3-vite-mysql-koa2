@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
+    "build": "nuxt build --mode production",
+    "dev": "nuxt dev --mode dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -19,6 +19,8 @@
     "dayjs": "^1.11.7",
     "md-editor-v3": "^2.11.0",
     "naive-ui": "^2.34.3",
+    "ohash": "^1.0.0",
+    "uuid": "^9.0.0",
     "vue3typed": "^0.1.5"
   }
 }

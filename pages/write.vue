@@ -29,6 +29,7 @@
 <script>
 import MarkDown from "@/components/MarkDown";
 import { NInput, NButton, NModal, useMessage } from "naive-ui";
+import { addArticle } from "@/api";
 export default {
   components: {
     MarkDown,
@@ -43,6 +44,7 @@ export default {
     const loading = ref(false);
     const modalshow = ref(false);
     const isClear = ref(false);
+    const router = useRouter();
     const handleChange = (val) => {
       console.log(val, "val123");
     };
@@ -67,16 +69,14 @@ export default {
         ...val,
         img: val.img.toString(),
       };
-      console.log(data, "asdasd");
       loading.value = true;
-      useFetch("http://localhost:7001/v1/article/add", {
-        key: new Date().getTime() + "",
-        method: "POST",
-        body: data,
-      })
+      addArticle(data)
         .then((res) => {
-          if (res.data?.value?.code == 200) {
-            message.success("新增成功")
+          if (res?.code == 200) {
+            message.success("新增成功");
+            setTimeout(() => {
+              router.push("/");
+            }, 1500);
             reset();
           }
         })
