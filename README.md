@@ -17,10 +17,11 @@ https://github.com/ztzzhi/nuxt3-mysql-koa2
 
 服务端代码需要配置数据库并初始化category表
 
+# 部署教程视频详情查看 
+部署视频地址 https://www.bilibili.com/video/BV11M411T7dT/?vd_source=437eddc03d69a423c8c1dabc4e4506fa
+
 # node版本 v16.14.0
 其他版本如若出现依赖安装失败等情况 请切换到该node版本进行依赖的安装
-
-# 
 
 # 博客页面展示
 
