@@ -1,6 +1,6 @@
 <template>
   <div class="detail_container">
-    <n-back-top :bottom="100" :visibility-height="300"> </n-back-top>
+    <n-back-top :bottom="100" :visibility-height="300"></n-back-top>
     <NuxtLayout name="header"></NuxtLayout>
     <div class="content">
       <div class="article_title">{{ detailObj.title }}</div>
