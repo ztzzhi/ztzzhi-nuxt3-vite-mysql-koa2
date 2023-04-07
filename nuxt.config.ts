@@ -19,7 +19,8 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no',
       title: '小张很嚣张的博客',
       meta: [
-        { name: 'description', content: '小张很嚣张的博客.' }
+        { name: 'description', content: '小张很嚣张的博客.' },
+        { name: 'referrer', content: 'no-referrer' },
       ],
       script: ["https://at.alicdn.com/t/c/font_3998962_vqamfv3hut.js"]
     }
