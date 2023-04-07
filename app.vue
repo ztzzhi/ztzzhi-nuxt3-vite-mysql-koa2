@@ -17,6 +17,7 @@ import { NConfigProvider, NMessageProvider } from "naive-ui";
 import { zhCN, dateZhCN } from "naive-ui";
 import "@/utils/clickEffect";
 import "@/static/css/reset.css";
+import "@/static/css/media.less";
 export default defineComponent({
   components: {
     NConfigProvider,

@@ -19,7 +19,7 @@
       <section class="btm_box">
         <div class="bb_mainbox">
           <div class="bbm_box">
-            <Mineinfo :data="statistics"></Mineinfo>
+            <Mineinfo :data="statistics" class="mine_info_container"></Mineinfo>
             <Articlelist
               v-model:data="listData"
               @load="loadMore"

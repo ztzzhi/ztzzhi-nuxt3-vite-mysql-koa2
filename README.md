@@ -14,6 +14,7 @@
 
 # 服务端代码单独仓库 
 https://github.com/ztzzhi/nuxt3-mysql-koa2
+服务端代码需要配置数据库并初始化category表
 
 # node版本 v16.14.0
 其他版本如若出现依赖安装失败等情况 请切换到该node版本进行依赖的安装

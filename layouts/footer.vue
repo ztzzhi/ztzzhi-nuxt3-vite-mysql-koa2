@@ -115,18 +115,18 @@
       flex: 1;
       .footer-text {
         letter-spacing: 1px;
-        line-height: 18px;
+        line-height: .18rem;
         margin-top: 25px;
       }
       .footer-decs {
         height: 36px;
         letter-spacing: 1px;
-        line-height: 18px;
+        line-height: .18rem;
       }
       .footer-copyright {
         letter-spacing: 1px;
         margin-top: 2px;
-        line-height: 18px;
+        line-height: .18rem;
       }
       .gwab {
         margin-left: 0.1rem;
@@ -150,21 +150,21 @@
       flex: none;
       flex-direction: column;
       justify-content: space-between;
-      margin-left: 100px;
+      margin-left: 1rem;
 
       .contact {
         .title {
           color: #aeaeae;
-          font-size: 16px;
+          font-size: .16rem;
         }
         .list {
-          margin-top: 10px;
-          padding-left: 10px;
-          font-size: 13px;
+          margin-top: 0.1rem;
+          padding-left: 0.1rem;
+          font-size: .13rem;
         }
       }
       .social {
-        margin-top: 20px;
+        margin-top: .2rem;
         .title {
           color: #aeaeae;
           font-size: 16px;
@@ -172,18 +172,19 @@
         .list {
           align-items: center;
           display: flex;
-          margin-top: 10px;
+          margin-top: .1rem;
+          justify-content: space-around;
           a {
             align-items: center;
             border-radius: 50%;
             color: #60606d;
             display: flex;
-            height: 36px;
+            height: .36rem;
             justify-content: center;
-            margin-right: 30px;
+            // margin-right: .3rem;
             position: relative;
             transition: all 0.3s;
-            width: 36px;
+            width: .36rem;
           }
           a:after {
             animation: pulse-2ecceb79 2s infinite;
