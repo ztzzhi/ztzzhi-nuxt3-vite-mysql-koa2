@@ -76,7 +76,7 @@ export default {
             message.success("新增成功");
             setTimeout(() => {
               router.push("/");
-            }, 1500);
+            });
             reset();
           }
         })

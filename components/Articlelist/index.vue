@@ -10,7 +10,7 @@
       >
         <div class="nli_img">
           <img :src="item.img" alt="img" />
-          <div class="img_mask">Web前端开发</div>
+          <div class="img_mask">{{item.tag}}</div>
         </div>
         <div class="nli_right">
           <div class="nli_title">
