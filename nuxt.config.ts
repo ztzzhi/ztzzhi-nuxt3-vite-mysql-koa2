@@ -22,7 +22,7 @@ export default defineNuxtConfig({
         { name: 'description', content: '小张很嚣张的博客.' },
         { name: 'referrer', content: 'no-referrer' },
       ],
-      script: ["https://at.alicdn.com/t/c/font_3998962_vqamfv3hut.js"]
+      script: [{ src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2563370598283962", async: 'true', crossorigin: 'anonymous' }]
     }
   },
   build: {
