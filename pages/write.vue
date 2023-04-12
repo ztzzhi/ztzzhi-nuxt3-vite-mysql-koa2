@@ -6,7 +6,7 @@
         type="text"
         size="large"
         placeholder="请输入文章标题..."
-        :maxlength="30"
+        :maxlength="50"
         :minlength="1"
         v-model:value="title"
       />

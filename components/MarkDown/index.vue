@@ -76,6 +76,7 @@
 import MdEditor from "md-editor-v3";
 import Upload from "../Upload";
 import "md-editor-v3/lib/style.css";
+import "./index.less"
 import { imgUploadUrl, secret } from "@/config";
 import { getCategory } from "@/api";
 import {
