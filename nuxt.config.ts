@@ -22,7 +22,10 @@ export default defineNuxtConfig({
         { name: 'description', content: '小张很嚣张的博客.' },
         { name: 'referrer', content: 'no-referrer' },
       ],
-      script: [{ src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2563370598283962", async: 'true', crossorigin: 'anonymous' }]
+      script: [{ src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2563370598283962", async: 'true', crossorigin: 'anonymous' }],
+      link: [
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" }
+      ]
     }
   },
   build: {
