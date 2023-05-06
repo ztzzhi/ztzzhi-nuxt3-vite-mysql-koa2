@@ -41,10 +41,9 @@ export default {
     NButton,
   },
   setup() {
-    const router = useRouter();
     const myurl = ref("");
     const handleIt = () => {
-      router.push("/vedio?url=" + myurl.value);
+      window.open("https://pangujiexi.cc/jiexi.php?url=" + myurl.value);
     };
     return {
       myurl,

@@ -18,7 +18,7 @@ const fetch = async (url: string, options?: any, headers?: any) => {
 
     console.log(result, 'result');
 
-    if (result.code !== 200) {
+    if (result?.code !== 200) {
       throw createError({
         statusCode: 500,
         statusMessage: reqUrl,
